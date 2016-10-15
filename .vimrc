@@ -3,16 +3,21 @@ call plug#begin()
 Plug 'scrooloose/nerdtree'
 Plug 'bling/vim-airline'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'nathanaelkane/vim-indent-guides'
 Plug 'tpope/vim-sensible'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'walm/jshint.vim'
 Plug 'matze/vim-move'
-Plug 'tpope/vim-sleuth'
-Plug 'romainl/apprentice'
 Plug 'mattn/emmet-vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'jiangmiao/auto-pairs'
+Plug 'valloric/youcompleteme'
+Plug 'kien/ctrlp.vim'
+Plug 'alessandroyorba/sierra'
+Plug 'easymotion/vim-easymotion'
+Plug 'tpope/vim-surround'
+
+" Set leader key
+let mapleader=","
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -31,11 +36,6 @@ let g:multi_cursor_prev_key='<C-a>'
 let g:multi_cursor_skip_key='<C-s>'
 let g:multi_cursor_quit_key='<Esc>'
 
-" indent guides color settings
-set background=dark
-hi IndentGuidesOdd  ctermbg=black
-hi IndentGuidesEven ctermbg=darkgrey
-
 " Set auto-save on start-up
 let g:auto_save = 1
 
@@ -43,14 +43,35 @@ let g:auto_save = 1
 let g:move_key_modifier = 'C'
 
 " Set tabstop to override default sleuth
-set tabstop=4
-set shiftwidth=4
-
-" Set Apprentice color scheme
-colorscheme apprentice
+set tabstop=2
+set shiftwidth=2
 
 " Set clipboard to map to key
 set clipboard=unnamed
 
 " Set line numbers
 set number
+
+" Ctrl P Settings
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+
+let g:ctrlp_working_path_mode = 'c'
+
+" Set colorscheme
+syntax enable
+set t_Co=256
+let g:sierra_Sundown = 1
+colorscheme sierra
+
+" Number toggle script
+function! NumberToggle()
+	if(&relativenumber == 1)
+		set number
+		set norelativenumber
+	else
+		set relativenumber
+	endif
+endfunc
+
+nnoremap <C-n> :call NumberToggle()<cr>
