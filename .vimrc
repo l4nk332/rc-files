@@ -93,9 +93,6 @@ nnoremap <C-c> :call ToggleBackground()<cr>
 " Sets bottom margin for cursor placement
 set scrolloff=1000
 
-" Openning file defaults to vertical split right
-set splitleft
-
 " Indent Guideline settings
 let g:indentLine_char = "¦"
 
