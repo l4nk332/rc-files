@@ -1,26 +1,32 @@
 call plug#begin()
 
-Plug 'tpope/vim-sensible'
 Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-fugitive'
 Plug 'bling/vim-airline'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-sensible'
 Plug 'bronson/vim-trailing-whitespace'
+Plug 'walm/jshint.vim'
 Plug 'matze/vim-move'
 Plug 'mattn/emmet-vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'jiangmiao/auto-pairs'
-Plug 'valloric/youcompleteme'
-Plug 'kien/ctrlp.vim'
-Plug 'tpope/vim-surround'
 Plug 'gioele/vim-autoswap'
 Plug '907th/vim-auto-save'
+Plug 'easymotion/vim-easymotion'
+Plug 'tpope/vim-surround'
+Plug 'valloric/matchtagalways'
+Plug 'valloric/youcompleteme'
+Plug 'Yggdroot/indentLine'
+Plug 'tpope/vim-fugitive'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'pbrisbin/vim-colors-off'
 
+" Add plugins to &runtimepath
 call plug#end()
 
-" Set up leader key
-let mapleader = ','
+" Set leader key
+let mapleader=","
 
 " map key for nerd tree
 map <C-\> :NERDTreeToggle<CR>
@@ -43,9 +49,9 @@ let g:auto_save = 1
 let g:move_key_modifier = 'C'
 
 " Set tabstop to override default sleuth
+set expandtab
 set tabstop=4
 set shiftwidth=4
-set expandtab
 
 " Set clipboard to map to key
 set clipboard=unnamed
@@ -53,14 +59,17 @@ set clipboard=unnamed
 " Set line numbers
 set number
 
-" Ctrl P Settings
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_working_path_mode = 'r'
-set wildignore+=*.zip,*/node_modules/*,*.swp,*.pyc
+" Number toggle script
+function! NumberToggle()
+	if(&relativenumber == 1)
+		set number
+		set norelativenumber
+	else
+        set relativenumber
+	endif
+endfunc
 
-
-let g:ctrlp_working_path_mode = 'c'
+nnoremap <C-n> :call NumberToggle()<cr>
 
 " Set colorscheme
 syntax enable
@@ -81,14 +90,13 @@ endfunc
 
 nnoremap <C-c> :call ToggleBackground()<cr>
 
-" Number toggle script
-function! NumberToggle()
-	if(&relativenumber == 1)
-		set number
-		set norelativenumber
-	else
-        set relativenumber
-	endif
-endfunc
+" Sets bottom margin for cursor placement
+set scrolloff=1000
 
-nnoremap <C-n> :call NumberToggle()<cr>
+" Openning file defaults to vertical split right
+set splitleft
+
+" Indent Guideline settings
+let g:indentLine_char = "¦"
+
+set colorcolumn=80,100
