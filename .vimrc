@@ -5,22 +5,19 @@ Plug 'bling/vim-airline'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-sensible'
 Plug 'bronson/vim-trailing-whitespace'
-Plug 'walm/jshint.vim'
 Plug 'matze/vim-move'
 Plug 'mattn/emmet-vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'gioele/vim-autoswap'
-Plug '907th/vim-auto-save'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-surround'
-Plug 'valloric/matchtagalways'
 Plug 'valloric/youcompleteme'
-Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'pbrisbin/vim-colors-off'
+Plug 'raphamorim/lucario'
+Plug 'miyakogi/conoline.vim'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -41,9 +38,6 @@ let g:multi_cursor_next_key='<C-d>'
 let g:multi_cursor_prev_key='<C-a>'
 let g:multi_cursor_skip_key='<C-s>'
 let g:multi_cursor_quit_key='<Esc>'
-
-" Set auto-save on start-up
-let g:auto_save = 1
 
 " Set move modifier key for move up and down
 let g:move_key_modifier = 'C'
@@ -74,21 +68,7 @@ nnoremap <C-n> :call NumberToggle()<cr>
 " Set colorscheme
 syntax enable
 set t_Co=256
-" let g:sierra_Sundown = 1
-" colorscheme sierra
-set background=dark
-colorscheme off
-
-" Background toggle script
-function! ToggleBackground()
-	if &background ==# 'light'
-		set background=dark
-	else
-		set background=light
-	endif
-endfunc
-
-nnoremap <C-c> :call ToggleBackground()<cr>
+colorscheme lucario
 
 " Sets bottom margin for cursor placement
 set scrolloff=1000
@@ -97,3 +77,10 @@ set scrolloff=1000
 let g:indentLine_char = "¦"
 
 set colorcolumn=80,100
+
+" To improve screen rendering w/ large files
+set timeoutlen=1000
+set ttimeoutlen=0
+
+" Highlight current line
+let g:conoline_auto_enable = 1
