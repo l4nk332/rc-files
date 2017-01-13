@@ -18,6 +18,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'raphamorim/lucario'
 Plug 'miyakogi/conoline.vim'
+Plug 'elmcast/elm-vim'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -86,3 +87,8 @@ set ttimeoutlen=100
 
 " Highlight current line
 let g:conoline_auto_enable = 1
+
+" YouCompleteMe elm configuration
+let g:ycm_semantic_triggers = {
+    \ 'elm' : ['.'],
+    \}
