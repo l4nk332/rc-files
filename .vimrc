@@ -57,7 +57,7 @@ set number
 function! NumberToggle()
 	if(&relativenumber == 1)
 		set number
-		set norelativenumber
+        set norelativenumber
 	else
         set relativenumber
 	endif
@@ -71,7 +71,7 @@ set t_Co=256
 colorscheme lucario
 
 " Sets bottom margin for cursor placement
-set scrolloff=1000
+set scrolloff=10
 
 " Indent Guideline settings
 let g:indentLine_char = "¦"
@@ -80,7 +80,9 @@ set colorcolumn=80,100
 
 " To improve screen rendering w/ large files
 set timeoutlen=1000
-set ttimeoutlen=0
+
+" Adjust keycode timeout length
+set ttimeoutlen=100
 
 " Highlight current line
 let g:conoline_auto_enable = 1
