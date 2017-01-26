@@ -2,5 +2,10 @@
 "esversion": 6,
 "node": true,
 "mocha": true,
-"browser": true
+"browser": true,
+"curly": true,
+"jquery": true,
+"eqeqeq": true,
+"undef": true,
+"unused": true
 }

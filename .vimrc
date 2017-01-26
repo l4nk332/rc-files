@@ -9,7 +9,6 @@ Plug 'matze/vim-move'
 Plug 'mattn/emmet-vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'jiangmiao/auto-pairs'
-Plug 'gioele/vim-autoswap'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-surround'
 Plug 'valloric/youcompleteme'
@@ -19,6 +18,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'raphamorim/lucario'
 Plug 'miyakogi/conoline.vim'
 Plug 'elmcast/elm-vim'
+Plug 'mhinz/vim-signify'
+Plug 'Shutnik/jshint2.vim'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -92,3 +93,16 @@ let g:conoline_auto_enable = 1
 let g:ycm_semantic_triggers = {
     \ 'elm' : ['.'],
     \}
+
+" Set up for signify
+
+let g:signify_vcs_list = [ 'git' ]
+let g:signify_cursorhold_insert = 1
+let g:signify_cursorhold_normal = 1
+let g:signify_update_on_bufenter = 0
+let g:signify_update_on_focusgained = 1
+
+nnoremap <leader>st SignifyToggle
+
+" jshint configuration
+let jshint2_save = 1
