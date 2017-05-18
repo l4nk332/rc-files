@@ -8,18 +8,15 @@ Plug 'bronson/vim-trailing-whitespace'
 Plug 'matze/vim-move'
 Plug 'mattn/emmet-vim'
 Plug 'tomtom/tcomment_vim'
-Plug 'jiangmiao/auto-pairs'
-Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-surround'
 Plug 'valloric/youcompleteme'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'raphamorim/lucario'
 Plug 'miyakogi/conoline.vim'
-Plug 'elmcast/elm-vim'
-Plug 'mhinz/vim-signify'
 Plug 'Shutnik/jshint2.vim'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'sbdchd/neoformat'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -70,7 +67,9 @@ nnoremap <C-n> :call NumberToggle()<cr>
 " Set colorscheme
 syntax enable
 set t_Co=256
-colorscheme lucario
+set background=dark
+set termguicolors
+colorscheme quantum
 
 " Sets bottom margin for cursor placement
 set scrolloff=10
@@ -79,6 +78,7 @@ set scrolloff=10
 let g:indentLine_char = "¦"
 
 set colorcolumn=80,100
+highlight ColorColumn ctermbg=23
 
 " To improve screen rendering w/ large files
 set timeoutlen=1000
@@ -89,20 +89,42 @@ set ttimeoutlen=100
 " Highlight current line
 let g:conoline_auto_enable = 1
 
+" YouCompleteMe configuration
+let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
+let g:ycm_use_ultisnips_completer = 1 " Default 1, just ensure
+let g:ycm_seed_identifiers_with_syntax = 1 " Completion for programming language's keyword
+let g:ycm_complete_in_comments = 1 " Completion in comments
+let g:ycm_complete_in_strings = 1 " Completion in string
+
 " YouCompleteMe elm configuration
 let g:ycm_semantic_triggers = {
     \ 'elm' : ['.'],
     \}
+set completeopt-=preview
 
-" Set up for signify
-
-let g:signify_vcs_list = [ 'git' ]
-let g:signify_cursorhold_insert = 1
-let g:signify_cursorhold_normal = 1
-let g:signify_update_on_bufenter = 0
-let g:signify_update_on_focusgained = 1
+" Allow vim to detect filetype
+filetype on
 
 nnoremap <leader>st SignifyToggle
 
 " jshint configuration
 let jshint2_save = 1
+
+" configuration to disable scroll wheel
+set mouse=""
+
+" fzf configuration
+set rtp+=/usr/local/opt/fzf
+
+" Smart-case Search
+set ignorecase
+set smartcase
+
+" Editor Config
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+
+" Add line-wrapping indicator
+set showbreak=↪
+
+" Make NeoFormatter run Prettier Pre-Buffer Write
+autocmd BufWritePre *.js Neoformat
