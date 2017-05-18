@@ -14,6 +14,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'miyakogi/conoline.vim'
+Plug 'arcticicestudio/nord-vim'
+Plug 'elmcast/elm-vim'
+Plug 'rust-lang/rust.vim'
 Plug 'Shutnik/jshint2.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'sbdchd/neoformat'
@@ -67,9 +70,7 @@ nnoremap <C-n> :call NumberToggle()<cr>
 " Set colorscheme
 syntax enable
 set t_Co=256
-set background=dark
-set termguicolors
-colorscheme quantum
+colorscheme nord
 
 " Sets bottom margin for cursor placement
 set scrolloff=10
@@ -104,8 +105,6 @@ set completeopt-=preview
 
 " Allow vim to detect filetype
 filetype on
-
-nnoremap <leader>st SignifyToggle
 
 " jshint configuration
 let jshint2_save = 1
