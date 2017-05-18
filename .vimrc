@@ -9,7 +9,6 @@ Plug 'matze/vim-move'
 Plug 'mattn/emmet-vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'jiangmiao/auto-pairs'
-Plug 'gioele/vim-autoswap'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-surround'
 Plug 'valloric/youcompleteme'
@@ -20,6 +19,7 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'miyakogi/conoline.vim'
 Plug 'elmcast/elm-vim'
 Plug 'rust-lang/rust.vim'
+Plug 'Shutnik/jshint2.vim'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -59,7 +59,7 @@ set number
 function! NumberToggle()
 	if(&relativenumber == 1)
 		set number
-		set norelativenumber
+        set norelativenumber
 	else
         set relativenumber
 	endif
@@ -73,7 +73,7 @@ set t_Co=256
 colorscheme nord
 
 " Sets bottom margin for cursor placement
-set scrolloff=1000
+set scrolloff=10
 
 " Indent Guideline settings
 let g:indentLine_char = "¦"
@@ -82,7 +82,9 @@ set colorcolumn=80,100
 
 " To improve screen rendering w/ large files
 set timeoutlen=1000
-set ttimeoutlen=0
+
+" Adjust keycode timeout length
+set ttimeoutlen=100
 
 " Highlight current line
 let g:conoline_auto_enable = 1
@@ -92,3 +94,6 @@ let g:conoline_auto_enable = 1
 let g:ycm_semantic_triggers = {
      \ 'elm' : ['.'],
      \}
+
+" jshint configuration
+let jshint2_save = 1
