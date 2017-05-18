@@ -36,7 +36,7 @@ let g:airline#extensions#tabline#enabled = 1
 set laststatus=2
 
 " Default mappings for multiple cursors
-let g:multi_cursor_next_key='<C-w>'
+let g:multi_cursor_next_key='<C-d>'
 let g:multi_cursor_prev_key='<C-a>'
 let g:multi_cursor_skip_key='<C-s>'
 let g:multi_cursor_quit_key='<Esc>'
