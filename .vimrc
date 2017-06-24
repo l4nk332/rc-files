@@ -6,23 +6,26 @@ Plug 'terryma/vim-multiple-cursors'
 if !has('nvim')
     Plug 'tpope/vim-sensible'
 endif
-Plug 'bronson/vim-trailing-whitespace'
+Plug 'ntpeters/vim-better-whitespace'
 Plug 'matze/vim-move'
 Plug 'mattn/emmet-vim'
-Plug 'tomtom/tcomment_vim'
-Plug 'jiangmiao/auto-pairs'
-Plug 'easymotion/vim-easymotion'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 Plug 'valloric/youcompleteme'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'arcticicestudio/nord-vim'
 Plug 'miyakogi/conoline.vim'
+Plug 'arcticicestudio/nord-vim'
 Plug 'elmcast/elm-vim'
 Plug 'rust-lang/rust.vim'
-Plug 'Shutnik/jshint2.devim'
-" Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'sbdchd/neoformat'
+Plug 'vim-syntastic/syntastic'
+Plug 'mtscout6/syntastic-local-eslint.vim'
+Plug 'mhinz/vim-startify'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -82,6 +85,7 @@ set scrolloff=10
 let g:indentLine_char = "¦"
 
 set colorcolumn=80,100
+highlight ColorColumn ctermbg=23
 
 " To improve screen rendering w/ large files
 set timeoutlen=1000
@@ -92,11 +96,63 @@ set ttimeoutlen=100
 " Highlight current line
 let g:conoline_auto_enable = 1
 
-" Elm Configurations
-" - YouCompleteMe integration
-let g:ycm_semantic_triggers = {
-     \ 'elm' : ['.'],
-     \}
+" YouCompleteMe configuration
+let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
+let g:ycm_use_ultisnips_completer = 1 " Default 1, just ensure
+let g:ycm_seed_identifiers_with_syntax = 1 " Completion for programming language's keyword
+let g:ycm_complete_in_comments = 1 " Completion in comments
+let g:ycm_complete_in_strings = 1 " Completion in string
 
-" jshint configuration
-let jshint2_save = 1
+" YouCompleteMe elm configuration
+let g:ycm_semantic_triggers = {
+    \ 'elm' : ['.'],
+    \}
+set completeopt-=preview
+
+" Allow vim to detect filetype
+filetype on
+
+" configuration to disable scroll wheel
+set mouse=""
+
+" fzf configuration
+set rtp+=/usr/local/opt/fzf
+
+" Smart-case Search
+set ignorecase
+set smartcase
+
+" Editor Config
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+
+" Add line-wrapping indicator
+set showbreak=↪
+
+" Make NeoFormatter run Prettier Pre-Buffer Write
+autocmd BufWritePre *.js,*.jsx Neoformat
+
+" Strip Trailing whitespace on Pre-Buffer Write
+autocmd BufWritePre * StripWhitespace
+
+" Syntastic configuration
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_python_flake8_args='--ignore=E1,E2,E3,E4,E5,E6,E7,E8,E9,W1,W2,W3,W4,W5,W6,W7,W8,W9'
+let g:syntastic_javascript_checkers=['eslint']
+
+" Startify
+let g:startify_custom_header = [
+\ '                       _           ',
+\ '                      (_)          ',
+\ '_ __   ___  _____   ___ _ __ ___   ',
+\ '| '_ \ / _ \/ _ \ \ / / | '_ ` _ \ ',
+\ '| | | |  __/ (_) \ V /| | | | | | |',
+\ '|_| |_|\___|\___/ \_/ |_|_| |_| |_|'
+\ ]
