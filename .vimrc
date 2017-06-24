@@ -3,7 +3,9 @@ call plug#begin()
 Plug 'scrooloose/nerdtree'
 Plug 'bling/vim-airline'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'tpope/vim-sensible'
+if !has('nvim')
+    Plug 'tpope/vim-sensible'
+endif
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'matze/vim-move'
 Plug 'mattn/emmet-vim'
@@ -19,7 +21,8 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'miyakogi/conoline.vim'
 Plug 'elmcast/elm-vim'
 Plug 'rust-lang/rust.vim'
-Plug 'Shutnik/jshint2.vim'
+Plug 'Shutnik/jshint2.devim'
+" Plug 'majutsushi/tagbar'
 
 " Add plugins to &runtimepath
 call plug#end()
