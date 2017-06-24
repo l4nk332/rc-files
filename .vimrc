@@ -3,12 +3,12 @@ call plug#begin()
 Plug 'scrooloose/nerdtree'
 Plug 'bling/vim-airline'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'tpope/vim-sensible'
-Plug 'bronson/vim-trailing-whitespace'
+Plug 'ntpeters/vim-better-whitespace'
 Plug 'matze/vim-move'
 Plug 'mattn/emmet-vim'
-Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 Plug 'valloric/youcompleteme'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -20,6 +20,9 @@ Plug 'rust-lang/rust.vim'
 Plug 'Shutnik/jshint2.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'sbdchd/neoformat'
+" Plug 'vim-syntastic/syntastic'
+" Plug 'mtscout6/syntastic-local-eslint.vim'
+Plug 'mhinz/vim-startify'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -107,7 +110,7 @@ set completeopt-=preview
 filetype on
 
 " jshint configuration
-let jshint2_save = 1
+" let jshint2_save = 1
 
 " configuration to disable scroll wheel
 set mouse=""
@@ -126,4 +129,32 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 set showbreak=↪
 
 " Make NeoFormatter run Prettier Pre-Buffer Write
-autocmd BufWritePre *.js Neoformat
+autocmd BufWritePre *.js,*.jsx Neoformat
+
+" Strip Trailing whitespace on Pre-Buffer Write
+autocmd BufWritePre * StripWhitespace
+
+" Syntastic configuration
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+
+" let g:syntastic_python_flake8_args='--ignore=E1,E2,E3,E4,E5,E6,E7,E8,E9,W1,W2,W3,W4,W5,W6,W7,W8,W9'
+" let g:syntastic_javascript_checkers=['eslint']
+
+" Startify
+let g:startify_custom_header = [
+\ ' _        _______  _______            _________ _______',
+\ '( (    /|(  ____ \(  ___  )  |\     /|\__   __/(       )',
+\ '|  \  ( || (    \/| (   ) |  | )   ( |   ) (   | () () |',
+\ '|   \ | || (__    | |   | |  | |   | |   | |   | || || |',
+\ '| (\ \) ||  __)   | |   | |  ( (   ) )   | |   | |(_)| |',
+\ '| | \   || (      | |   | |   \ \_/ /    | |   | |   | |',
+\ '| )  \  || (____/\| (___) |    \   /  ___) (___| )   ( |',
+\ '|/    )_)(_______/(_______)     \_/   \_______/|/     \|'
+\ ]
