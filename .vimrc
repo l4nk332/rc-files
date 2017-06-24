@@ -17,7 +17,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'miyakogi/conoline.vim'
-Plug 'arcticicestudio/nord-vim'
+Plug 'flazz/vim-colorschemes'
 Plug 'elmcast/elm-vim'
 Plug 'rust-lang/rust.vim'
 Plug 'majutsushi/tagbar'
@@ -76,7 +76,7 @@ nnoremap <C-n> :call NumberToggle()<cr>
 " Set colorscheme
 syntax enable
 set t_Co=256
-colorscheme nord
+colorscheme 1989
 
 " Sets bottom margin for cursor placement
 set scrolloff=10
@@ -95,6 +95,8 @@ set ttimeoutlen=100
 
 " Highlight current line
 let g:conoline_auto_enable = 1
+let g:conoline_use_colorscheme_default_normal=1
+let g:conoline_use_colorscheme_default_insert=1
 
 " YouCompleteMe configuration
 let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
