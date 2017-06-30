@@ -12,7 +12,6 @@ Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-Plug 'valloric/youcompleteme'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -23,9 +22,10 @@ Plug 'rust-lang/rust.vim'
 Plug 'majutsushi/tagbar'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'sbdchd/neoformat'
-Plug 'vim-syntastic/syntastic'
-Plug 'mtscout6/syntastic-local-eslint.vim'
 Plug 'mhinz/vim-startify'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'pbogut/deoplete-elm'
+Plug 'zchee/deoplete-jedi'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -76,7 +76,7 @@ nnoremap <C-n> :call NumberToggle()<cr>
 " Set colorscheme
 syntax enable
 set t_Co=256
-colorscheme 1989
+colorscheme apprentice
 
 " Sets bottom margin for cursor placement
 set scrolloff=10
@@ -98,18 +98,15 @@ let g:conoline_auto_enable = 1
 let g:conoline_use_colorscheme_default_normal=1
 let g:conoline_use_colorscheme_default_insert=1
 
-" YouCompleteMe configuration
-let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
-let g:ycm_use_ultisnips_completer = 1 " Default 1, just ensure
-let g:ycm_seed_identifiers_with_syntax = 1 " Completion for programming language's keyword
-let g:ycm_complete_in_comments = 1 " Completion in comments
-let g:ycm_complete_in_strings = 1 " Completion in string
-
-" YouCompleteMe elm configuration
-let g:ycm_semantic_triggers = {
-    \ 'elm' : ['.'],
-    \}
+" Deoplete
+let g:deoplete#enable_at_startup = 1
 set completeopt-=preview
+
+" deoplete tab-complete
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
+" Elm Format on Save
+let g:elm_format_autosave = 1
 
 " Allow vim to detect filetype
 filetype on
@@ -135,19 +132,6 @@ autocmd BufWritePre *.js,*.jsx Neoformat
 
 " Strip Trailing whitespace on Pre-Buffer Write
 autocmd BufWritePre * StripWhitespace
-
-" Syntastic configuration
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_python_flake8_args='--ignore=E1,E2,E3,E4,E5,E6,E7,E8,E9,W1,W2,W3,W4,W5,W6,W7,W8,W9'
-let g:syntastic_javascript_checkers=['eslint']
 
 " Startify
 let g:startify_custom_header = [
