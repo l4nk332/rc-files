@@ -84,7 +84,7 @@ set scrolloff=10
 " Indent Guideline settings
 let g:indentLine_char = "¦"
 
-set colorcolumn=80,100
+set colorcolumn=72,80
 highlight ColorColumn ctermbg=23
 
 " To improve screen rendering w/ large files
@@ -140,3 +140,5 @@ let g:startify_custom_header = [
 \ '| ||_  ||   ||  _||_  ||_  ||  _|',
 \ '|_|  |_||_|_||_,_||___||___||___|',
 \ ]
+
+let g:startify_change_to_dir = 0
