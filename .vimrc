@@ -16,16 +16,15 @@ Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'miyakogi/conoline.vim'
-Plug 'flazz/vim-colorschemes'
 Plug 'elmcast/elm-vim'
-Plug 'rust-lang/rust.vim'
 Plug 'majutsushi/tagbar'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'sbdchd/neoformat'
-Plug 'mhinz/vim-startify'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'pbogut/deoplete-elm'
 Plug 'zchee/deoplete-jedi'
+Plug 'brendonrapp/smyck-vim'
+Plug 'w0rp/ale'
+Plug 'mhinz/vim-startify'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -75,17 +74,13 @@ nnoremap <C-n> :call NumberToggle()<cr>
 
 " Set colorscheme
 syntax enable
-set t_Co=256
-colorscheme apprentice
+colorscheme smyck
 
 " Sets bottom margin for cursor placement
 set scrolloff=10
 
-" Indent Guideline settings
-let g:indentLine_char = "¦"
-
 set colorcolumn=72,80
-highlight ColorColumn ctermbg=23
+highlight ColorColumn ctermbg=8
 
 " To improve screen rendering w/ large files
 set timeoutlen=1000
@@ -127,18 +122,38 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 " Add line-wrapping indicator
 set showbreak=↪
 
-" Make NeoFormatter run Prettier Pre-Buffer Write
-autocmd BufWritePre *.js,*.jsx Neoformat
+" ALE Config
+let g:ale_fixers = {}
+let g:ale_fixers['javascript'] = ['prettier']
 
-" Strip Trailing whitespace on Pre-Buffer Write
-autocmd BufWritePre * StripWhitespace
+let g:ale_linters = {}
+let g:ale_linters['javascript'] = ['eslint']
 
-" Startify
-let g:startify_custom_header = [
-\ ' _  ___       _    ___  ___  ___',
-\ '| || | | ___ | |_ |_  ||_  ||_  |',
-\ '| ||_  ||   ||  _||_  ||_  ||  _|',
-\ '|_|  |_||_|_||_,_||___||___||___|',
-\ ]
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 0
 
+nmap <silent> <C-l> <Plug>(ale_previous_wrap)
+nmap <silent> <C-h> <Plug>(ale_next_wrap)
+
+:command AF ALEFix
+
+nnoremap <C-m> :call ToggleAleLocList()<cr>
+
+let g:ale_set_quickfix = 1
+let g:ale_open_list = 0
+
+function! ToggleAleLocList()
+    if g:ale_open_list
+        cclose
+        let g:ale_set_quickfix = 0
+        let g:ale_open_list = 0
+    else
+        copen
+        let g:ale_open_list = 1
+        let g:ale_set_quickfix = 0
+    endif
+endfunction
+
+" Startify configuration
 let g:startify_change_to_dir = 0
+let g:startify_change_to_vcs_root = 0
