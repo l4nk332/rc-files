@@ -130,7 +130,6 @@ let g:ale_linters = {}
 let g:ale_linters['javascript'] = ['eslint']
 
 let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 0
 
 nmap <silent> <C-l> <Plug>(ale_previous_wrap)
 nmap <silent> <C-h> <Plug>(ale_next_wrap)
