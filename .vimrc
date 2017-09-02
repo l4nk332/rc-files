@@ -22,9 +22,9 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'pbogut/deoplete-elm'
 Plug 'zchee/deoplete-jedi'
-Plug 'brendonrapp/smyck-vim'
 Plug 'w0rp/ale'
 Plug 'mhinz/vim-startify'
+Plug 'tpope/vim-rhubarb'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -74,7 +74,7 @@ nnoremap <C-n> :call NumberToggle()<cr>
 
 " Set colorscheme
 syntax enable
-colorscheme smyck
+colorscheme lucario
 
 " Sets bottom margin for cursor placement
 set scrolloff=10
@@ -135,25 +135,9 @@ let g:ale_lint_on_text_changed = 0
 nmap <silent> <C-l> <Plug>(ale_previous_wrap)
 nmap <silent> <C-h> <Plug>(ale_next_wrap)
 
-:command AF ALEFix
-
-nnoremap <C-m> :call ToggleAleLocList()<cr>
-
-let g:ale_set_quickfix = 1
+let g:ale_set_quickfix = 0
 let g:ale_open_list = 0
-
-function! ToggleAleLocList()
-    if g:ale_open_list
-        cclose
-        let g:ale_set_quickfix = 0
-        let g:ale_open_list = 0
-    else
-        copen
-        let g:ale_open_list = 1
-        let g:ale_set_quickfix = 0
-    endif
-endfunction
 
 " Startify configuration
 let g:startify_change_to_dir = 0
-let g:startify_change_to_vcs_root = 0
+let g:startify_change_to_vcs_root = 1
