@@ -2,7 +2,6 @@ call plug#begin()
 
 Plug 'scrooloose/nerdtree'
 Plug 'bling/vim-airline'
-Plug 'terryma/vim-multiple-cursors'
 if !has('nvim')
     Plug 'tpope/vim-sensible'
 endif
@@ -13,6 +12,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'miyakogi/conoline.vim'
@@ -22,9 +22,10 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'pbogut/deoplete-elm'
 Plug 'zchee/deoplete-jedi'
-Plug 'w0rp/ale'
 Plug 'mhinz/vim-startify'
-Plug 'tpope/vim-rhubarb'
+Plug 'neomake/neomake'
+Plug 'flazz/vim-colorschemes'
+Plug 'kshenoy/vim-signature'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -39,12 +40,6 @@ map <C-\> :NERDTreeToggle<CR>
 let g:airline#extensions#tabline#enabled = 1
 " enable airline by default
 set laststatus=2
-
-" Default mappings for multiple cursors
-let g:multi_cursor_next_key='<C-d>'
-let g:multi_cursor_prev_key='<C-a>'
-let g:multi_cursor_skip_key='<C-s>'
-let g:multi_cursor_quit_key='<Esc>'
 
 " Set move modifier key for move up and down
 let g:move_key_modifier = 'C'
@@ -74,7 +69,8 @@ nnoremap <C-n> :call NumberToggle()<cr>
 
 " Set colorscheme
 syntax enable
-colorscheme lucario
+set background=dark
+colorscheme gruvbox
 
 " Sets bottom margin for cursor placement
 set scrolloff=10
@@ -83,10 +79,10 @@ set colorcolumn=72,80
 highlight ColorColumn ctermbg=8
 
 " To improve screen rendering w/ large files
-set timeoutlen=1000
+" set timeoutlen=1000
 
 " Adjust keycode timeout length
-set ttimeoutlen=100
+" set ttimeoutlen=100
 
 " Highlight current line
 let g:conoline_auto_enable = 1
@@ -122,21 +118,14 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 " Add line-wrapping indicator
 set showbreak=↪
 
-" ALE Config
-let g:ale_fixers = {}
-let g:ale_fixers['javascript'] = ['prettier']
-
-let g:ale_linters = {}
-let g:ale_linters['javascript'] = ['eslint']
-
-let g:ale_lint_on_save = 1
-
-nmap <silent> <C-l> <Plug>(ale_previous_wrap)
-nmap <silent> <C-h> <Plug>(ale_next_wrap)
-
-let g:ale_set_quickfix = 0
-let g:ale_open_list = 0
-
 " Startify configuration
 let g:startify_change_to_dir = 0
 let g:startify_change_to_vcs_root = 1
+
+" Neomake
+" When reading a buffer (after 1s), and when writing.
+call neomake#configure#automake('rw', 1000)
+let g:neomake_highlight_columns = 0
+
+" Neovim mapping to allow for switching out of terminal pane.
+tnoremap <Esc> <C-\><C-n>
