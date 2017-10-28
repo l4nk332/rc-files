@@ -24,6 +24,7 @@ Plug 'pbogut/deoplete-elm'
 Plug 'zchee/deoplete-jedi'
 Plug 'mhinz/vim-startify'
 Plug 'neomake/neomake'
+Plug 'jaawerth/neomake-local-eslint-first'
 Plug 'flazz/vim-colorschemes'
 Plug 'kshenoy/vim-signature'
 
@@ -126,6 +127,8 @@ let g:startify_change_to_vcs_root = 1
 " When reading a buffer (after 1s), and when writing.
 call neomake#configure#automake('rw', 1000)
 let g:neomake_highlight_columns = 0
+
+let g:neomake_javascript_enabled_makers = ['eslint']
 
 " Neovim mapping to allow for switching out of terminal pane.
 tnoremap <Esc> <C-\><C-n>
