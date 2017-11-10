@@ -27,6 +27,10 @@ Plug 'neomake/neomake'
 Plug 'jaawerth/neomake-local-eslint-first'
 Plug 'flazz/vim-colorschemes'
 Plug 'kshenoy/vim-signature'
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql'] }
+Plug 'SirVer/ultisnips'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -108,6 +112,8 @@ set mouse=""
 
 " fzf configuration
 set rtp+=/usr/local/opt/fzf
+" By feeding ag output to fzf ignored files will be excluded
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
 " Smart-case Search
 set ignorecase
@@ -132,3 +138,11 @@ let g:neomake_javascript_enabled_makers = ['eslint']
 
 " Neovim mapping to allow for switching out of terminal pane.
 tnoremap <Esc> <C-\><C-n>
+
+" UltiSnips trigger configuration.
+let g:UltiSnipsExpandTrigger="<c-x>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"

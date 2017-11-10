@@ -94,3 +94,7 @@ export HISTFILESIZE=1000000
 export HISTTIMEFORMAT='%b %d %I:%M %p '	# using strftime format
 export HISTCONTROL=ignoreboth	# ignoredups:ignorespace
 export HISTIGNORE="history:pwd:exit:df:ls -la:ll:clear"
+
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+source $(brew --prefix nvm)/nvm.sh
