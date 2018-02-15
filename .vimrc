@@ -31,6 +31,7 @@ Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql'] }
 Plug 'SirVer/ultisnips'
+Plug 'metakirby5/codi.vim'
 
 " Add plugins to &runtimepath
 call plug#end()
