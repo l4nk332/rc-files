@@ -149,4 +149,4 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEditSplit="vertical"
 
 " Custom shortcut to uppercase current word while in insert mode
-imap <c-u> <esc>viwUwa
+inoremap <c-u> <esc>viwUwa
