@@ -150,3 +150,9 @@ let g:UltiSnipsEditSplit="vertical"
 
 " Custom shortcut to uppercase current word while in insert mode
 inoremap <c-u> <esc>viwUwa
+
+" Custom shortcut to open the vimrc as vsplit
+nnoremap <leader>ev :vsplit ~/.vimrc<cr>
+
+" Custom shortcut to source the vimrc
+nnoremap <leader>sv :source ~/.vimrc<cr>
