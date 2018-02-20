@@ -156,3 +156,14 @@ nnoremap <leader>ev :vsplit ~/.vimrc<cr>
 
 " Custom shortcut to source the vimrc
 nnoremap <leader>sv :source ~/.vimrc<cr>
+
+" Custom abbreviation to insert pdb import statement
+iabbrev pdb import pdb; pdb.set_trace();
+
+" Custom shortcuts to jump to start/end of line
+nnoremap H ^
+nnoremap L $
+
+" Custom shortcuts to wrap current word in single/double quotes
+nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
+nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
