@@ -157,8 +157,9 @@ nnoremap <leader>ev :vsplit ~/.vimrc<cr>
 " Custom shortcut to source the vimrc
 nnoremap <leader>sv :source ~/.vimrc<cr>
 
-" Custom abbreviation to insert pdb import statement
-iabbrev pdb import pdb; pdb.set_trace();
+" Custom autocmd abbreviation to insert pdb import statement in python
+" FileTypes
+autocmd FileType python :iabbrev <buffer> pdb import pdb; pdb.set_trace();
 
 " Custom shortcuts to jump to start/end of line
 nnoremap H ^
