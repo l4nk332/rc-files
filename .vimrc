@@ -82,7 +82,7 @@ colorscheme gruvbox
 set scrolloff=10
 
 set colorcolumn=72,80
-highlight ColorColumn ctermbg=8
+highlight ColorColumn ctermbg=0
 
 " To improve screen rendering w/ large files
 " set timeoutlen=1000
