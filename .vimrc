@@ -167,3 +167,6 @@ nnoremap L $
 " Custom shortcuts to wrap current word in single/double quotes
 nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
 nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
+
+" Custom shortcut to remap jk to <esc>
+inoremap jk <esc>
