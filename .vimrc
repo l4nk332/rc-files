@@ -159,7 +159,10 @@ nnoremap <leader>sv :source ~/.vimrc<cr>
 
 " Custom autocmd abbreviation to insert pdb import statement in python
 " FileTypes
-autocmd FileType python :iabbrev <buffer> pdb import pdb; pdb.set_trace();
+augroup pythongroup
+    autocmd!
+    autocmd FileType python :iabbrev <buffer> pdb import pdb; pdb.set_trace();
+augroup END
 
 " Custom shortcuts to jump to start/end of line
 nnoremap H ^
