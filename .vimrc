@@ -11,7 +11,7 @@ Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-Plug 'lambdalisue/gina.vim'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -160,7 +160,7 @@ nnoremap <leader>sv :source ~/.vimrc<cr>
 
 " Custom autocmd abbreviation to insert pdb import statement in python
 " FileTypes
-augroup pythongroup
+augroup filetype_python
     autocmd!
     autocmd FileType python :iabbrev <buffer> pdb import pdb; pdb.set_trace();
 augroup END
