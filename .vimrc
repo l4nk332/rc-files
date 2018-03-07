@@ -175,3 +175,13 @@ nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 
 " Custom shortcut to remap jk to <esc>
 inoremap jk <esc>
+
+" Custom function/mapping to open new split terminal
+function! Terminal()
+    :vs
+    :terminal
+    setlocal nonumber
+    :normal i
+endfunction
+
+nnoremap <c-s> :call Terminal()<cr>
