@@ -19,9 +19,6 @@ Plug 'miyakogi/conoline.vim'
 Plug 'elmcast/elm-vim'
 Plug 'majutsushi/tagbar'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'pbogut/deoplete-elm'
-Plug 'zchee/deoplete-jedi'
 Plug 'mhinz/vim-startify'
 Plug 'neomake/neomake'
 Plug 'jaawerth/neomake-local-eslint-first'
@@ -30,11 +27,16 @@ Plug 'kshenoy/vim-signature'
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql'] }
-Plug 'SirVer/ultisnips'
-Plug 'metakirby5/codi.vim'
-Plug 'mxw/vim-jsx'
+Plug 'ap/vim-css-color'
 
-" Add plugins to &runtimepath
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+
 call plug#end()
 
 " Set leader key
@@ -77,7 +79,7 @@ nnoremap <C-n> :call NumberToggle()<cr>
 " Set colorscheme
 syntax enable
 set background=dark
-colorscheme gruvbox
+colorscheme solarized
 
 " Sets bottom margin for cursor placement
 set scrolloff=10
@@ -85,23 +87,10 @@ set scrolloff=10
 set colorcolumn=72,80
 highlight ColorColumn ctermbg=0
 
-" To improve screen rendering w/ large files
-" set timeoutlen=1000
-
-" Adjust keycode timeout length
-" set ttimeoutlen=100
-
 " Highlight current line
 let g:conoline_auto_enable = 1
 let g:conoline_use_colorscheme_default_normal=1
 let g:conoline_use_colorscheme_default_insert=1
-
-" Deoplete
-let g:deoplete#enable_at_startup = 1
-set completeopt-=preview
-
-" deoplete tab-complete
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " Elm Format on Save
 let g:elm_format_autosave = 1
@@ -109,13 +98,10 @@ let g:elm_format_autosave = 1
 " Allow vim to detect filetype
 filetype on
 
-" configuration to disable scroll wheel
-set mouse=""
-
 " fzf configuration
 set rtp+=/usr/local/opt/fzf
-" By feeding ag output to fzf ignored files will be excluded
-let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+" Define Find command to fuzzy find through search results
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --follow --color "always" '.shellescape(<q-args>), 1, <bang>0)
 
 " Smart-case Search
 set ignorecase
@@ -136,27 +122,20 @@ let g:startify_change_to_vcs_root = 1
 call neomake#configure#automake('rw', 1000)
 let g:neomake_highlight_columns = 0
 
-let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_javascript_enabled_makers = ['eslint', 'flow']
+let g:neomake_jsx_enabled_makers = ['flow']
 
 " Neovim mapping to allow for switching out of terminal pane.
 tnoremap <Esc> <C-\><C-n>
 
-" UltiSnips trigger configuration.
-let g:UltiSnipsExpandTrigger="<c-x>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" Deoplete
+let g:deoplete#enable_at_startup = 1
 
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-" Custom shortcut to uppercase current word while in insert mode
-inoremap <c-u> <esc>viwUea
-
-" Custom shortcut to open the vimrc as vsplit
-nnoremap <leader>ev :vsplit ~/.vimrc<cr>
-
-" Custom shortcut to source the vimrc
-nnoremap <leader>sv :source ~/.vimrc<cr>
+" Custom shortcut to open the vimrc as newtab
+nnoremap <leader>ev :tabnew ~/.vimrc<cr>
 
 " Custom autocmd abbreviation to insert pdb import statement in python
 " FileTypes
@@ -165,23 +144,15 @@ augroup filetype_python
     autocmd FileType python :iabbrev <buffer> pdb import pdb; pdb.set_trace();
 augroup END
 
-" Custom shortcuts to jump to start/end of line
-nnoremap H ^
-nnoremap L $
-
-" Custom shortcuts to wrap current word in single/double quotes
-nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
-nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
-
-" Custom shortcut to remap jk to <esc>
-inoremap jk <esc>
-
 " Custom function/mapping to open new split terminal
-function! Terminal()
+function! TerminalSplit()
     :vs
     :terminal
     setlocal nonumber
     :normal i
 endfunction
 
-nnoremap <c-s> :call Terminal()<cr>
+" Custom mapping to open new tab
+nnoremap <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+
+set grepprg=rg\ --vimgrep
