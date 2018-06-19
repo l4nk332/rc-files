@@ -144,6 +144,11 @@ augroup filetype_python
     autocmd FileType python :iabbrev <buffer> pdb import pdb; pdb.set_trace();
 augroup END
 
+
+augroup flow_ext_to_js
+    autocmd BufReadPost *.flow set syntax=javascript
+augroup END
+
 " Custom function/mapping to open new split terminal
 function! TerminalSplit()
     :vs
