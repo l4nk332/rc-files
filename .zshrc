@@ -16,13 +16,14 @@ alias ll='ls -lahG'
 alias sl='cd ~/Code/Github/SimpleLegal/'
 alias eb='cd ~/Code/Github/SimpleLegal/ebill/static/react/'
 alias vp='cd ~/Code/Github/SimpleLegal/vendorportal/static/react/'
+alias common='cd ~/Code/Github/SimpleLegal/common/static/simple-core-ui/'
 alias tmux='TERM=screen-256color-bce tmux'
 
 #Environment variables are placed in this section
- export MYNAME='Ian Jabour'
- export PATH='/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'
- export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
- export PATH="$HOME/.cargo/bin:$PATH"
+export MYNAME='Ian Jabour'
+export PATH='/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'
+export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
+export PATH="$HOME/.cargo/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

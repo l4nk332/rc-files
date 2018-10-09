@@ -1,11 +1,11 @@
 call plug#begin()
 
 Plug 'scrooloose/nerdtree'
-Plug 'bling/vim-airline'
 if !has('nvim')
     Plug 'tpope/vim-sensible'
 endif
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'itchyny/lightline.vim'
 Plug 'matze/vim-move'
 Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-commentary'
@@ -16,18 +16,18 @@ Plug 'tpope/vim-rhubarb'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'miyakogi/conoline.vim'
-Plug 'elmcast/elm-vim'
 Plug 'majutsushi/tagbar'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'mhinz/vim-startify'
 Plug 'neomake/neomake'
 Plug 'jaawerth/neomake-local-eslint-first'
-Plug 'flazz/vim-colorschemes'
+Plug 'drewtempelmeyer/palenight.vim'
 Plug 'kshenoy/vim-signature'
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql'] }
 Plug 'ap/vim-css-color'
+Plug 'terryma/vim-multiple-cursors'
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -44,11 +44,6 @@ let mapleader=","
 
 " map key for nerd tree
 map <C-\> :NERDTreeToggle<CR>
-
-" airline will show tabs for other buffers
-let g:airline#extensions#tabline#enabled = 1
-" enable airline by default
-set laststatus=2
 
 " Set move modifier key for move up and down
 let g:move_key_modifier = 'C'
@@ -79,7 +74,19 @@ nnoremap <C-n> :call NumberToggle()<cr>
 " Set colorscheme
 syntax enable
 set background=dark
-colorscheme solarized
+colorscheme palenight
+let g:palenight_terminal_italics=1
+
+if (has("nvim"))
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
+
+if (has("termguicolors"))
+  set termguicolors
+endif
+
+" Lightline config
+let g:lightline = { 'colorscheme': 'palenight' }
 
 " Sets bottom margin for cursor placement
 set scrolloff=10
@@ -130,6 +137,8 @@ tnoremap <Esc> <C-\><C-n>
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#num_processes = 1
+
 
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
